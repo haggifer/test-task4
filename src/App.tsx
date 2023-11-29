@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ReactElement } from 'react';
+import { CssBaseline } from "@mui/material";
+import { StyledEngineProvider } from '@mui/material/styles';
+import { router } from "./routing/router";
+import CustomProgress from "./components/common/CustomProgress/CustomProgress";
+import { RouterProvider } from "react-router-dom";
 
-function App() {
+import './assets/scss/index.scss';
+
+export default function App(): ReactElement {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+      <CssBaseline enableColorScheme/>
 
-export default App;
+      <StyledEngineProvider injectFirst>
+        <RouterProvider
+          router={router}
+          fallbackElement={<CustomProgress/>}
+        />
+      </StyledEngineProvider>
+    </>
+  )
+}
