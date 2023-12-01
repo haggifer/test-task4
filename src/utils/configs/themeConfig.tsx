@@ -1,4 +1,5 @@
 import { ThemeOptions } from "@mui/material/styles";
+import { PaletteColor, PaletteColorOptions } from "@mui/material";
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -20,10 +21,12 @@ declare module '@mui/material/styles' {
   }
 
   interface Palette {
+    primary: PaletteColor,
     accent: Record<number, string>,
   }
 
   interface PaletteOptions {
+    primary?: PaletteColorOptions,
     accent: Record<number, string>,
   }
 }
@@ -49,6 +52,9 @@ export const themeConfig: ThemeOptions = {
     },
   },
   palette: {
+    primary: {
+      main: '#294eb5',
+    },
     accent: {
       50: '#e7e9f6',
       100: '#c2c9e9',
@@ -64,7 +70,7 @@ export const themeConfig: ThemeOptions = {
   },
   extra: {
     headerHeight: 100,
-    footerHeight: 60,
+    footerHeight: 100,
     maxContentWidth: 1000,
   }
 }

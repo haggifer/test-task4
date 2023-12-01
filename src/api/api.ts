@@ -1,14 +1,44 @@
-import axios from "axios";
-import { ICurrency } from "../typescript/entities";
+import axios, { AxiosError } from "axios";
+import { IRate } from "../typescript/entities";
+import { ls } from "../utils/helpers/localStorage";
 
 export const apiProvider = axios.create({
   baseURL: 'https://api.privatbank.ua/p24api',
 })
 
-export const fetcher = () => currenciesData;
-// export const fetcher = (url: string) => apiProvider.get(url).then((res) => res.data);
+// will work if CORS is fixed
+export const fetcher = async (url: string) => {
+  const counter = ls.get('counter')
 
-const currenciesData: ICurrency[] = [
+  if (Number(counter) === 4) {
+    ls.set('counter', String(0))
+
+    throw new AxiosError('Counter Error', 'ERR_NETWORK')
+  } else {
+    ls.set('counter', String(Number(counter) ? Number(counter) + 1 : 1))
+
+    return apiProvider.get(url)
+      .then((res) => res.data)
+  }
+}
+
+export const mockFetcher = (): Promise<IRate[]> => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const counter = ls.get('counter')
+
+    if (Number(counter) === 4) {
+      ls.set('counter', String(0))
+
+      reject(new Error('Counter error'));
+    } else {
+      ls.set('counter', String(Number(counter) ? Number(counter) + 1 : 1))
+
+      resolve(exchangeData);
+    }
+  }, 1000);
+});
+
+export const exchangeData: IRate[] = [
   {
     "ccy": "CHF",
     "base_ccy": "UAH",
@@ -56,5 +86,11 @@ const currenciesData: ICurrency[] = [
     "base_ccy": "UAH",
     "buy": "3.48460",
     "sale": "3.48460"
-  }
+  },
+  {
+    "ccy": "PLZ",
+    "base_ccy": "EUR",
+    "buy": "1.23456",
+    "sale": "1.23456"
+  },
 ]

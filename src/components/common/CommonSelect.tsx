@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Select, { CSSObjectWithLabel, Props as SelectProps } from "react-select";
-import { ISelectOption } from "../../../typescript/common";
+import { ISelectOption } from "../../typescript/common";
 import { StylesProps } from "react-select/dist/declarations/src/styles";
 import { CSSObject, useTheme } from "@mui/material";
 
@@ -14,7 +14,7 @@ export const defaultStringSelectOption: ISelectOption<string> = {
   value: '',
 }
 
-interface IProps<Option, IsMulti extends boolean> extends Partial<Omit<SelectProps<Option, IsMulti>, 'value' | 'onChange' | 'options' | 'styles'>> {
+export interface CommonSelectProps<Option, IsMulti extends boolean> extends Partial<Omit<SelectProps<Option, IsMulti>, 'value' | 'onChange' | 'options' | 'styles'>> {
   value: SelectProps<Option, IsMulti>['value'],
   onChange: SelectProps<Option, IsMulti>['onChange'],
   options: SelectProps<Option, IsMulti>['options'],
@@ -45,10 +45,10 @@ const stylesComponents: (keyof StylesProps<ISelectOption<unknown>, boolean, neve
   'valueContainer',
 ]
 
-export const CommonSelect = <Option, IsMulti extends boolean>(props: IProps<ISelectOption<Option>, IsMulti>) => {
+export const CommonSelect = <Option, IsMulti extends boolean>(props: CommonSelectProps<ISelectOption<Option>, IsMulti>) => {
   const theme = useTheme()
 
-  const defaultStyles: IProps<Option, IsMulti>['styles'] = useMemo(() => {
+  const defaultStyles: CommonSelectProps<Option, IsMulti>['styles'] = useMemo(() => {
     return {
       menu: {
         marginTop: 0,
