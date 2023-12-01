@@ -51,7 +51,7 @@ export const CommonSelect = <Option, IsMulti extends boolean>(props: CommonSelec
   const defaultStyles: CommonSelectProps<Option, IsMulti>['styles'] = useMemo(() => {
     return {
       menu: {
-        marginTop: 0,
+        marginBlock: 0,
       }
     }
   }, [theme])

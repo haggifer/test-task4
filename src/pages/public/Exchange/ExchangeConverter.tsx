@@ -174,6 +174,7 @@ export default function ExchangeConverter(): ReactElement {
                 setQuoteCurrency(newValue as ISelectOption<string>) :
                 setBaseCurrency(newValue as ISelectOption<string>)}
               options={reversedExchange ? quoteCurrencyOptions : baseCurrencyOptions}
+              menuPlacement="top"
               styles={currencySelectStyles}
               sx={{
                 flexShrink: 0,
@@ -243,6 +244,7 @@ export default function ExchangeConverter(): ReactElement {
                 setBaseCurrency(newValue as ISelectOption<string>) :
                 setQuoteCurrency(newValue as ISelectOption<string>)}
               options={reversedExchange ? baseCurrencyOptions : quoteCurrencyOptions}
+              menuPlacement="top"
               styles={currencySelectStyles}
               sx={{
                 flexShrink: 0,
