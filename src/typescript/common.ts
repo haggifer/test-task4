@@ -1,4 +1,4 @@
 export interface ISelectOption<ValueType> {
-  label: string,
-  value: ValueType,
+  label: string;
+  value: ValueType;
 }

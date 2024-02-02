@@ -10,4 +10,4 @@ export default {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   modulePaths: ['<rootDir>'],
   testEnvironment: 'jsdom',
-}
+};
