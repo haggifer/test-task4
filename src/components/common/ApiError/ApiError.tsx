@@ -3,7 +3,7 @@ import { Alert, Button } from '@mui/material';
 
 interface IProps {
   message: string;
-  retry: () => void;
+  retry?: () => void;
 }
 
 export default function ApiError({ message, retry }: IProps): ReactElement {

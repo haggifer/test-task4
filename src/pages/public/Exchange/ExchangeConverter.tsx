@@ -14,13 +14,13 @@ import {
   useTheme,
 } from '@mui/material';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
+import _ from 'lodash';
+import { roundToPrecision } from '../../../utils/helpers/common';
 import {
   CommonSelect,
   CommonSelectProps,
-} from '../../../components/common/CommonSelect';
-import { ISelectOption } from '../../../typescript/common';
-import _ from 'lodash';
-import { roundToPrecision } from '../../../utils/helpers/common';
+  ISelectOption,
+} from '../../../components/common/CommonSelect/CommonSelect';
 
 export default function ExchangeConverter(): ReactElement {
   const { data } = useExchangeStore();

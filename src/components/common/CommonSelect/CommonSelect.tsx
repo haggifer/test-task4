@@ -1,8 +1,11 @@
 import React, { useMemo } from 'react';
 import Select, { CSSObjectWithLabel, Props as SelectProps } from 'react-select';
-import { ISelectOption } from '../../typescript/common';
 import { StylesProps } from 'react-select/dist/declarations/src/styles';
-import { CSSObject, useTheme } from '@mui/material';
+
+export interface ISelectOption<ValueType> {
+  label: string;
+  value: ValueType;
+}
 
 export const defaultNumberSelectOption: ISelectOption<number> = {
   label: 'Select...',
@@ -25,7 +28,10 @@ export interface CommonSelectProps<Option, IsMulti extends boolean>
   onChange: SelectProps<Option, IsMulti>['onChange'];
   options: SelectProps<Option, IsMulti>['options'];
   styles?: Partial<
-    Record<keyof StylesProps<Option, IsMulti, never>, CSSObject>
+    Record<
+      keyof StylesProps<Option, IsMulti, never>,
+      Record<string, string | number>
+    >
   >;
 }
 
@@ -60,16 +66,15 @@ const stylesComponents: (keyof StylesProps<
 export const CommonSelect = <Option, IsMulti extends boolean>(
   props: CommonSelectProps<ISelectOption<Option>, IsMulti>,
 ) => {
-  const theme = useTheme();
-
   const defaultStyles: CommonSelectProps<Option, IsMulti>['styles'] =
     useMemo(() => {
       return {
         menu: {
           marginBlock: 0,
+          zIndex: 100,
         },
       };
-    }, [theme]);
+    }, []);
 
   return (
     <Select<Readonly<ISelectOption<Option>>, IsMulti>

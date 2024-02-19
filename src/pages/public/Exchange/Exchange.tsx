@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { mockFetcher } from '../../../api/api';
 import { useExchangeStore } from '../../../stores/exchangeStore';
-import ApiError from '../../../components/common/ApiError';
+import ApiError from '../../../components/common/ApiError/ApiError';
 import useSWR, { useSWRConfig } from 'swr';
 import {
   Box,
@@ -11,7 +11,7 @@ import {
   useTheme,
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import CustomProgress from '../../../components/common/CustomProgress';
+import CustomProgress from '../../../components/common/CustomProgress/CustomProgress';
 import { IRate } from '../../../typescript/entities';
 import ExchangeTable from './ExchangeTable';
 import ExchangeConverter from './ExchangeConverter';
